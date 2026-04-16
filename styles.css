@@ -131,23 +131,51 @@ body {
   justify-content: space-between;
 }
 
+/* CARDS NORMAL (NO scroll) */
 .cards {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
-.card {
-  flex: 1;
-  background: #ccc;
+/* 🔥 SCROLL HORIZONTAL (MIS VIAJES) */
+.scroll-x {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding-bottom: 10px;
+}
+
+/* clave: evitar que se adapten */
+.scroll-x .card {
+  flex: 0 0 auto;
+  width: 140px;  /* 👈 esto fuerza el scroll */
   height: 80px;
+  background: #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 8px;
 }
 
+/* ocultar scrollbar */
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
+.scroll-x {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* CARDS PEQUEÑAS (destinos) */
 .cards.small .card {
+  flex: 1;
   height: 60px;
+  background: #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
 }
 
 /* RECOMMENDATION */
@@ -185,30 +213,7 @@ body {
   font-size: 12px;
 }
 
-/* SCROLL HORIZONTAL */
-.scroll-x {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding-bottom: 10px;
-}
-
-/* quitar barra fea en móvil */
-.scroll-x::-webkit-scrollbar {
-  display: none;
-}
-
-.scroll-x {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* tarjetas con tamaño fijo */
-.scroll-x .card {
-  min-width: 120px;
-  flex: 0 0 auto;
-}
-
+/* 🔥 OPCIONAL PRO (efecto snap tipo app) */
 .scroll-x {
   scroll-snap-type: x mandatory;
 }
