@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
 }
 
 body {
@@ -14,13 +14,13 @@ body {
 /* MENU */
 .menu {
   position: fixed;
-  top: 0;
   left: -260px;
+  top: 0;
   width: 260px;
   height: 100%;
   background: #2f2f2f;
   color: white;
-  transition: left 0.3s ease;
+  transition: 0.3s;
   z-index: 1000;
   padding: 20px;
 }
@@ -29,52 +29,14 @@ body {
   left: 0;
 }
 
-.logo {
-  border: 1px solid #555;
-  padding: 15px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.user {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.avatar {
-  width: 35px;
-  height: 35px;
-  background: gray;
-  margin-right: 10px;
-}
-
-.menu-items {
-  list-style: none;
-}
-
-.menu-items li {
-  padding: 12px 0;
-  border-bottom: 1px solid #444;
-  cursor: pointer;
-}
-
-.menu-items li:hover {
-  color: red;
-}
-
-/* OVERLAY */
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.4);
   opacity: 0;
   visibility: hidden;
   transition: 0.3s;
-  z-index: 900;
 }
 
 .overlay.active {
@@ -86,17 +48,8 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   background: #ddd;
   padding: 15px;
-  position: sticky;
-  top: 0;
-}
-
-.header button {
-  font-size: 20px;
-  background: none;
-  border: none;
 }
 
 /* CONTENT */
@@ -115,13 +68,12 @@ body {
   background: red;
   color: white;
   border: none;
-  padding: 12px;
+  padding: 10px;
   margin-top: 10px;
   width: 100%;
-  border-radius: 20px;
 }
 
-/* SECTIONS */
+/* SECTION */
 .section {
   margin-top: 20px;
 }
@@ -131,93 +83,48 @@ body {
   justify-content: space-between;
 }
 
-/* CARDS NORMAL (NO scroll) */
+/* 🔥 SCROLL REAL */
+.scroll-container {
+  display: flex;
+  overflow-x: scroll;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* IMPORTANTE */
+.card {
+  min-width: 150px; /* 👈 fuerza scroll */
+  height: 90px;
+  background: #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* DESTINOS */
 .cards {
   display: flex;
   gap: 10px;
   margin-top: 10px;
 }
 
-/* 🔥 SCROLL HORIZONTAL (MIS VIAJES) */
-.scroll-x {
-  display: flex;
-  overflow-x: auto;
-  gap: 10px;
-  padding-bottom: 10px;
-}
-
-/* clave: evitar que se adapten */
-.scroll-x .card {
-  flex: 0 0 auto;
-  width: 140px;  /* 👈 esto fuerza el scroll */
-  height: 80px;
-  background: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-}
-
-/* ocultar scrollbar */
-.scroll-x::-webkit-scrollbar {
-  display: none;
-}
-.scroll-x {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* CARDS PEQUEÑAS (destinos) */
-.cards.small .card {
+.small-card {
   flex: 1;
-  height: 60px;
   background: #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-}
-
-/* RECOMMENDATION */
-.recommendation {
-  display: flex;
-  background: #ddd;
-  padding: 10px;
-  margin-top: 20px;
-  border-radius: 10px;
-}
-
-.recommendation .img {
-  width: 80px;
   height: 60px;
-  background: #bbb;
-  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* NAVBAR */
+/* NAV */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   width: 100%;
   max-width: 390px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #eee;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
-}
-
-.bottom-nav div {
-  text-align: center;
-  font-size: 12px;
-}
-
-/* 🔥 OPCIONAL PRO (efecto snap tipo app) */
-.scroll-x {
-  scroll-snap-type: x mandatory;
-}
-
-.scroll-x .card {
-  scroll-snap-align: start;
+  background: #eee;
+  padding: 10px;
 }
