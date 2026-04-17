@@ -22,13 +22,73 @@ body {
   color: white;
   transition: 0.3s;
   z-index: 1000;
-  padding: 20px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .menu.active {
   left: 0;
 }
 
+/* HEADER MENU */
+.logo {
+  border: 1px solid #555;
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: gray;
+  border-radius: 50%;
+}
+
+/* LISTA MENU */
+.menu-items {
+  list-style: none;
+  flex-grow: 1;
+}
+
+.menu-items li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.menu-items li:not(:last-child) {
+  margin-bottom: 5px;
+}
+
+.menu-items li:hover {
+  background: #444;
+}
+
+/* SEPARAR CERRAR SESIÓN */
+.menu-items li:last-child {
+  margin-top: 20px;
+  border-top: 1px solid #555;
+  padding-top: 15px;
+  color: #ff6b6b;
+}
+
+/* OVERLAY */
 .overlay {
   position: fixed;
   width: 100%;
@@ -71,6 +131,7 @@ body {
   padding: 10px;
   margin-top: 10px;
   width: 100%;
+  border-radius: 20px;
 }
 
 /* SECTION */
@@ -84,14 +145,13 @@ body {
   overflow-x: auto;
   gap: 10px;
   margin-top: 10px;
-  cursor: grab;
 }
 
 .scroll-container::-webkit-scrollbar {
   display: none;
 }
 
-/* MIS VIAJES */
+/* CARDS */
 .card {
   min-width: 150px;
   height: 90px;
@@ -132,7 +192,7 @@ body {
   border-radius: 5px;
 }
 
-/* NAV */
+/* NAVBAR MEJORADA */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -140,6 +200,53 @@ body {
   max-width: 390px;
   display: flex;
   justify-content: space-around;
-  background: #eee;
+  background: #ffffff;
+  padding: 8px 0;
+  border-top: 1px solid #ddd;
+}
+
+.bottom-nav div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #555;
+  gap: 3px;
+}
+
+.bottom-nav div span {
+  font-size: 11px;
+}
+
+.bottom-nav div:hover {
+  color: red;
+}
+
+/* RECOMENDACIÓN */
+.recommendation {
+  display: flex;
+  gap: 10px;
+  background: #fff;
   padding: 10px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.recommendation img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.rec-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.rec-text strong {
+  margin-bottom: 5px;
 }
