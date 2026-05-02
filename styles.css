@@ -1,0 +1,442 @@
+/* ===================================================== */
+/* =================== RESET GENERAL =================== */
+/* ===================================================== */
+* {
+  margin: 0;                    /* Elimina márgenes por defecto del navegador */
+  padding: 0;                   /* Elimina padding por defecto */
+  box-sizing: border-box;       /* Hace que width y height incluyan padding y border */
+  font-family: Arial;           /* Fuente por defecto para toda la app */
+}
+
+body {
+  background: #f2f2f2;          /* Color de fondo general */
+  max-width: 390px;             /* Ancho máximo para simular móvil */
+  margin: auto;                 /* Centra la app horizontalmente */
+  overflow-x: hidden;           /* Evita scroll horizontal no deseado */
+  width: 100%;                  /* Ocupa todo el ancho disponible */
+}
+
+/* ===================================================== */
+/* ======================= APP BASE ==================== */
+/* ===================================================== */
+.app {
+  min-height: 100vh;            /* Ocupa al menos toda la altura de la pantalla */
+  display: flex;                /* Usa flexbox para organizar el layout */
+  flex-direction: column;       /* Organiza los hijos en columna */
+}
+
+/************************************/
+/* HEADER (usado en todos los HTML) */
+/************************************/
+.header {
+  display: flex;                /* Organiza los elementos en fila */
+  justify-content: space-between; /* Distribuye espacio entre logo, título y notificaciones */
+  background: #ddd;             /* Color de fondo de la cabecera */
+  padding: 15px;                /* Espacio interno */
+
+  /* 🔧 FIX APK (barra superior Android) */
+  padding-top: calc(15px + env(safe-area-inset-top)); /* Respeta la zona segura del notch */
+
+  position: sticky;             /* Se queda fija al hacer scroll */
+  top: 0;                       /* Se pega al borde superior */
+  z-index: 10;                  /* Está por encima de otros elementos */
+}
+
+/*************************************************/
+/* CONTENIDO PRINCIPAL (usado en todos los HTML) */
+/*************************************************/
+.content {
+  padding: 15px;                                              /* Espacio interno general */
+
+  /*  FIX APK, espacio para navbar infeior) */
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));  /* Espacio extra para la barra inferior */
+
+  flex: 1;                                                    /* Ocupa todo el espacio disponible */
+  overflow-y: auto;                                           /* Permite scroll vertical si el contenido es largo */
+} 
+
+/******************************************/
+/* MENÚ LATERAL (usado en todos los HTML) */
+/******************************************/
+.menu {
+  position: fixed;              /* Se posiciona fijo en la pantalla */
+  left: -260px;                 /* Oculto por defecto (fuera de la vista) */
+  top: 0;
+  width: 260px;
+  height: 100%;                 /* Ocupa toda la altura */
+  background: #2f2f2f;          /* Fondo oscuro */
+  color: white;                 /* Texto blanco */
+  transition: 0.3s;             /* Animación suave al abrir/cerrar */
+  z-index: 10000;               /* Está por encima de todo */
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu.active {
+  left: 0;                      /* Muestra el menú deslizándolo desde la izquierda */
+}
+
+.logo {
+  border: 1px solid #555;       /* Borde alrededor del logo */
+  padding: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 10px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background: gray;
+  border-radius: 50%;
+}
+
+.menu-items {
+  list-style: none;             /* Quita los puntos de la lista */
+}
+
+.menu-items li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.menu-items li:hover {
+  background: #444;             /* Efecto al pasar el ratón */
+}
+
+.menu-items li:last-child {
+  margin-top: 20px;
+  border-top: 1px solid #555;
+  padding-top: 15px;
+  color: #ff6b6b;               /* Color rojo para "Cerrar sesión" */
+}
+
+/* OVERLAY (fondo oscuro) */
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+
+  z-index: 9999;                /* FIX APK Asegura que esté por encima de todo, que en el mapa, quedaba por debjo del mapa a saber porqué motivo */
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*******************/
+/* NAVBAR INFERIOR */
+/*******************/
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 390px;
+  display: flex;
+  justify-content: space-around;
+  background: #ffffff;
+  border-top: 1px solid #ddd;
+
+                    /*FIX APK (barra inferior Android) */
+  padding: 8px 0;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom));
+  height: calc(75px + env(safe-area-inset-bottom));
+
+  z-index: 100;
+}
+
+.bottom-nav div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #555;
+}
+
+/**********/
+/* INICIO */
+/**********/
+.welcome {
+  background: #ddd;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.primary-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  min-width: 150px;
+  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small-card {
+  min-width: 120px;
+  height: 80px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.small-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small-card span {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: white;
+  font-size: 12px;
+  background: rgba(0,0,0,0.5);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+.recommendation {
+  display: flex;
+  gap: 10px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.recommendation img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/**************/
+/* PLANIFICAR */
+/**************/
+.plan-box {
+  background: #e5e5e5;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.plan-box label {
+  font-size: 13px;
+  margin-top: 15px;
+  display: block;
+}
+
+.plan-input {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.plan-days {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.plan-days button {
+  width: 30px;
+  height: 30px;
+}
+
+.plan-fuel {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.plan-fuel label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/**********************/
+/* TARJETAS TIPO VIAJE*/
+/**********************/
+.plan-card {
+  min-width: 100px;
+  height: 100px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.plan-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plan-card span {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  z-index: 2;
+}
+
+.plan-card.active {
+  border-color: #8e44ad;
+  transform: scale(1.08);
+  box-shadow: 0 0 0 4px rgba(142, 68, 173, 0.4);
+}
+
+.plan-card.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(142, 68, 173, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/*******************/
+/* Botón continuar */
+/*******************/
+.plan-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: #555;
+  color: white;
+  border: none;
+}
+
+/********/
+/* RUTA */
+/********/
+#map {
+  width: 100%;
+  height: 52vh;
+  min-height: 280px;
+}
+
+.route-panel {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 15px 100px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.15);
+  max-height: 48vh;
+  overflow-y: auto;
+}
+
+.route-list {
+  margin-bottom: 25px;
+}
+
+.route-day {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding: 8px 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #8e44ad;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.route-buttons {
+  display: flex;
+  gap: 12px;
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 15px 0 10px;
+  margin: 0 -15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-top: 1px solid #eee;
+}
+
+.route-buttons button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #555;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#map.fullscreen {
+  height: 100vh !important;
+}
+
+/***************************************************************/
+/* CORRECCIÓN PARA QUE EL OVERLAY CIERRE CORRECTAMENTE EN RUTA */
+/***************************************************************/
+#map, .route-panel {
+  z-index: 1;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">                                                                            <!-- Define el juego de caracteres UTF-8, es necesario para tildes, ñ... -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">        <!-- Viewport para que se vea bien en móviles -->
+  <title>Planicamper</title>                                                                        <!-- Título -->
+  <link rel="stylesheet" href="styles.css">                                                         <!-- Hoja de estilos
+  
+  -->
+</head>
+<body>
+
+<!-- ==================== MENÚ LATERAL ==================== -->
+<div id="menu" class="menu">                      <!-- Contenedor del menú lateral  -->
+  <div>                                           <!-- Contenedor para organizar el menú -->
+    <div class="logo">LOGO PLANICAMPER</div>      <!-- Logo de la app -->
+
+    <div class="user">                            <!-- Info user -->
+      <div class="avatar"></div>                  <!-- Espacio para la foto de perfil del usuario -->
+      <span>Josefa</span>                         <!-- Nombre  user -->
+    </div>
+
+    <ul class="menu-items">                                                            <!-- Lista opciones del menú -->
+        <li onclick="location.href='index.html'">🏠 Inicio</li>                        <!-- Página principal -->
+        <li onclick="location.href='misviajes.html'">💾 Mis Viajes Guardados</li>      <!-- Mis Viajes -->
+        <li onclick="location.href='planificar.html'">➕ Planificar Nuevo Viaje</li>   <!-- Planificar -->
+        <li>🌍 Destinos populares</li>             
+        <li>🗺️ Tu ruta</li>                       
+        <li>⚙️ Ajustes</li>                        
+        <li>❓ Ayuda</li>                          
+        <li>✉️ Enviar Feedback</li>               
+        <li>🚪 Cerrar sesión</li>                 
+    </ul>
+  </div>
+</div>
+
+<div id="overlay" class="overlay"></div>          <!-- Fondo oscuro cuando se abre el menú -->
+
+
+<div class="app">                                 <!-- Contenedor principal de la app -->
+
+<header class="header">                           <!-- Cabecera superior fija -->
+  <button id="menuBtn">☰</button>                <!-- Botón menú lateral -->
+  <h1>Inicio</h1>                                 <!-- Título  -->
+  <span>🔔</span>                                
+</header>
+
+<!-- ==================== PÁGINA ==================== -->
+
+<main class="content">                            
+
+  <!-- Sección bienvenida -->
+  <div class="welcome">
+    <h2>¡Hola Josefa!</h2>                        <!-- Saludo -->
+    <p>¿A dónde quieres viajar?</p>               
+    <button class="primary-btn" onclick="location.href='planificar.html'">+ Planificar nuevo viaje</button>       <!-- Botón grande que lleva a planificar -->
+  </div>
+
+  <!-- Sección Mis Viajes -->
+  <div class="section">
+    <div class="section-header">
+      <h3>Mis Viajes</h3>                         <!-- Título sección -->
+      <span onclick="location.href='misviajes.html'" style="cursor: pointer; color: #8e44ad;">Ver todos</span>  <!-- Enlace para ver todos los viajes guardados -->
+    </div>
+
+    <div class="scroll-container">                <!-- Carrusel horizontal de viajes -->
+      <div class="small-card" onclick="location.href='misviajes.html?id=1'">
+        <img src="InicioFotos/1.jpg">             <!-- Imagen del viaje -->
+        <span>Almería</span>                      <!-- Nombre del viaje -->
+      </div>
+      <div class="small-card" onclick="location.href='misviajes.html?id=2'">
+        <img src="InicioFotos/2.jpg">
+        <span>Cádiz</span>
+      </div>
+      <div class="small-card" onclick="location.href='misviajes.html?id=3'">
+        <img src="InicioFotos/3.jpg">
+        <span>Palafrugell</span>
+      </div>
+      <div class="small-card" onclick="location.href='misviajes.html?id=4'">
+        <img src="InicioFotos/4.jpg">
+        <span>Pirineos</span>
+      </div>
+      <div class="small-card" onclick="location.href='misviajes.html?id=5'">
+        <img src="InicioFotos/5.jpg">
+        <span>Alpes</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección Destinos Populares -->
+  <div class="section">
+    <h3>Destinos Populares</h3>                   <!-- Título de la sección -->
+    <div class="scroll-container">                <!-- Carrusel horizontal -->
+      <div class="small-card"><img src="InicioFotos/6.jpg"><span>Costa</span></div>          <!-- Nombre del viaje e imagen -->
+      <div class="small-card"><img src="InicioFotos/7.jpg"><span>Montaña</span></div>
+      <div class="small-card"><img src="InicioFotos/8.jpg"><span>Pueblos</span></div>
+      <div class="small-card"><img src="InicioFotos/9.jpg"><span>Interior</span></div>
+      <div class="small-card"><img src="InicioFotos/10.jpg"><span>Ríos</span></div>
+    </div>
+  </div>
+
+  <!-- Recomendación del día -->
+  <div class="section">
+    <h3>Recomendación del día</h3>                <!-- Título sección -->
+    <div class="recommendation">                  <!-- Tarjeta recomendación -->
+      <img src="InicioFotos/11.jpg">              <!-- Imagen recomendación -->
+      <div class="rec-text">                      <!-- Texto recomendación -->
+        <strong>Costa Brava</strong>              <!-- Título -->
+        <p>Una ruta perfecta entre calas escondidas, pueblos con encanto y carreteras que invitan a perderse sin prisa.</p>  <!-- Descripción -->
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- Barra de navegación inferior -->
+<nav class="bottom-nav">
+  <div onclick="location.href='index.html'">🏠<span>Inicio</span></div>
+  <div onclick="location.href='planificar.html'">📄<span>Planificar</span></div>
+  <div>📍<span>Mapa</span></div>
+  <div>👤<span>Perfil</span></div>
+</nav>
+
+</div>
+
+<script src="inicio.js"></script>                 <!-- JavaScript de esta página -->
+</body>
+</html>
