@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">                          
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+                                                                                       <!-- Configura que se adapte al tamaño del móvil -->
+  <title>Tu Ruta</title>                                                               <!-- Título -->
+  <link rel="stylesheet" href="styles.css">                                            <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>     <!-- Hoja de estilos de Leaflet, para el mapa, que si no, no sale -->
+</head>
+<body>
+
+<!-- ==================== MENÚ LATERAL ==================== -->
+ <!-- Mismo funcionanmiento que en plnificar o index-->
+<div id="menu" class="menu">                      
+  <div>                                           
+    <div class="logo">LOGO PLANICAMPER</div>      
+
+    <div class="user">                            
+      <div class="avatar"></div>                  
+      <span>Josefa</span>                         
+    </div>
+
+    <ul class="menu-items">                       
+      <li onclick="location.href='index.html'">🏠 Inicio</li>                    
+      <li onclick="location.href='misviajes.html'">💾 Mis Viajes Guardados</li> 
+      <li onclick="location.href='planificar.html'">➕ Planificar Nuevo Viaje</li> 
+      <li>🌍 Destinos populares</li>             
+      <li>🗺️ Tu ruta</li>                       
+      <li>⚙️ Ajustes</li>                        
+      <li>❓ Ayuda</li>                         
+      <li>✉️ Enviar Feedback</li>                
+      <li>🚪 Cerrar sesión</li>           
+    </ul>
+  </div>
+</div>
+
+<div id="overlay" class="overlay"></div>          
+
+<div class="app">                                 <!-- Contenedor de la aplicación -->
+
+<header class="header">                           <!-- Cabecera -->
+  <button id="menuBtn">☰</button>                 <!-- Botón de menú -->
+  <h1>Tu Ruta</h1>                                <!-- Título -->
+  <span>🔔</span>                                 <!-- Icono -->
+</header>
+
+<!-- ==================== MAPA ==================== -->
+<div id="map"></div>                              <!-- Contenedor donde se cargará el mapa con Leaflet -->
+
+<!-- ==================== PANEL INFERIOR ==================== -->
+<div class="route-panel" id="panel">              <!-- Panel inferior que muestra al lista de días y botones -->
+  <div class="route-list" id="routeList"></div>   <!-- Contenedor donde se generará la lista de días -->
+
+  <div class="route-buttons">                                                   <!-- Contenedor de los dos botones inferiores -->
+    <button id="verMapa">VER MAPA</button>                                      <!-- Botón mapa en pantalla completa -->
+    <button onclick="location.href='planificar.html'">EDITAR VIAJE</button>     <!-- Botón de vuelta a planificar.html -->
+  </div>
+</div>
+
+<!-- ==================== NAVEGACIÓN INFERIOR ==================== -->
+<nav class="bottom-nav">                                                        <!-- Barra de navegación inferior fija -->
+  <div onclick="location.href='index.html'">🏠<span>Inicio</span></div>
+  <div onclick="location.href='planificar.html'">📄<span>Planificar</span></div>
+  <div>📍<span>Mapa</span></div>
+  <div>👤<span>Perfil</span></div>
+</nav>
+
+</div>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>   <!-- Carga la librería Leaflet para mostrar el mapa -->
+<script src="ruta.js"></script>                                           <!-- Carga el script js-->
+</body>
+</html>

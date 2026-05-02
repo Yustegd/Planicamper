@@ -1,0 +1,376 @@
+/* ====================================================== */
+/* =================== RESET GENERAL ==================== */
+/* ====================================================== */
+
+* {
+  margin: 0;                    /* Elimina los márgenes por defecto del navegador */
+  padding: 0;                   /* Elimina el padding por defecto */
+  box-sizing: border-box;       /* Hace que width/height incluya padding y border */
+  font-family: Arial;           /* Fuente por defecto para toda la app */
+}
+
+body {
+  background: #f2f2f2;        /* Color de fondo claro */
+  max-width: 390px;             /* Ancho máximo típical de móvil */
+  margin: auto;                 /* Centra la app horizontalmente */
+  overflow-x: hidden;           /* Para evitar scroll horizontal no deseado */
+  width: 100%;                  /* Asegura que ocupe todo el ancho disponible */
+}
+
+/* ====================================================== */
+/* ======================= APP BASE ===================== */
+/* ====================================================== */
+
+.app {
+  min-height: 100vh;            /* Ocupa al menos toda la altura de la pantalla */
+  display: flex;                /* Usa flexbox para distribuir el contenido */
+  flex-direction: column;       /* Organiza los hijos en columna */
+}
+
+/************************************/
+/* HEADER (usado en todos los HTML) */
+/************************************/
+.header {
+  display: flex;
+  justify-content: space-between;
+  background: #ddd;
+  padding: 15px;
+  padding-top: calc(15px + env(safe-area-inset-top)); /* Respeta notch/barra superior en iOS/Android */
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/***********************/
+/* CONTENIDO PRINCIPAL */
+/***********************/
+.content {
+  padding: 15px;
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));    /* Espacio extra para la barra inferior ya que en la app quedaba encima de la botonera del móvil*/
+  flex: 1;                                                      /* Ocupa todo el espacio disponible */
+  overflow-y: auto;                                             /* Permite scroll vertical si el contenido es largo */
+}
+
+/****************/
+/* MENÚ LATERAL */
+/****************/
+.menu {
+  position: fixed;
+  left: -260px;             /* Oculto por defecto, truquete para que esté ocualto y solo salga al iniciarse*/
+  top: 0;
+  width: 260px;
+  height: 100%;
+  background: #2f2f2f;
+  color: white;
+  transition: 0.3s;         /* Animación suave al abrir/cerrar */
+  z-index: 10000;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu.active {
+  left: 0;                  /* Muestra el menú */
+}
+
+/**************************/
+/* OVERLAY (fondo oscuro) */
+/**************************/
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  visibility: hidden;
+  z-index: 9999;            /* Asegura que esté por encima de todo (Sin esto en Rutas no habia manera de poner el menú por encima del mapa)*/
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/********************************/
+/* BARRA DE NAVEGACIÓN INFERIOR */
+/********************************/
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 390px;
+  display: flex;
+  justify-content: space-around;
+  background: #ffffff;
+  border-top: 1px solid #ddd;
+  padding: 8px 0;
+  padding-bottom: calc(15px + env(safe-area-inset-bottom)); /* Respeta barra inferior del móvil (Se quedaba debajo de los botones de navegacion del móvil) */
+  height: calc(75px + env(safe-area-inset-bottom));
+  z-index: 100;
+}
+
+.bottom-nav div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #555;
+}
+
+/* ===================================================== */
+/* ======================= INICIO ====================== */
+/* ===================================================== */
+
+.welcome {
+  background: #ddd;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.primary-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  border-radius: 20px;
+}
+
+.section {
+  margin-top: 20px;
+}
+
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.small-card {
+  min-width: 120px;
+  height: 80px;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.small-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.small-card span {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: white;
+  font-size: 12px;
+  background: rgba(0,0,0,0.5);
+  padding: 2px 6px;
+  border-radius: 5px;
+}
+
+.recommendation {
+  display: flex;
+  gap: 10px;
+  background: #fff;
+  padding: 10px;
+  border-radius: 12px;
+}
+
+.recommendation img {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* ===================================================== */
+/* ==================== PLANIFICAR ===================== */
+/* ===================================================== */
+
+.plan-box {
+  background: #e5e5e5;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.plan-box label {
+  font-size: 13px;
+  margin-top: 15px;
+  display: block;
+}
+
+.plan-input {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.plan-days {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.plan-days button {
+  width: 30px;
+  height: 30px;
+}
+
+.plan-fuel {
+  display: flex;
+  gap: 15px;
+  margin-top: 8px;
+}
+
+.plan-fuel label {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/*****************************/
+/* Tarjetas de tipo de viaje */
+/*****************************/
+.plan-card {
+  min-width: 100px;
+  height: 100px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.plan-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.plan-card span {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  z-index: 2;
+}
+
+.plan-card.active {
+  border-color: #8e44ad;
+  transform: scale(1.08);
+  box-shadow: 0 0 0 4px rgba(142, 68, 173, 0.4);
+}
+
+.plan-card.active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(142, 68, 173, 0.35);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.plan-btn {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background: #555;
+  color: white;
+  border: none;
+}
+
+/* ===================================================== */
+/* ======================= RUTA ========================= */
+/* ===================================================== */
+
+#map {
+  width: 100%;
+  height: 52vh;
+  min-height: 280px;
+}
+
+.route-panel {
+  background: white;
+  border-radius: 20px 20px 0 0;
+  padding: 20px 15px 100px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.15);
+  max-height: 48vh;
+  overflow-y: auto;
+}
+
+.route-list {
+  margin-bottom: 25px;
+}
+
+.route-day {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding: 8px 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #8e44ad;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.route-buttons {
+  display: flex;
+  gap: 12px;
+  position: sticky;
+  bottom: 0;
+  background: white;
+  padding: 15px 0 10px;
+  margin: 0 -15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-top: 1px solid #eee;
+}
+
+.route-buttons button {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #555;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#map.fullscreen {
+  height: 100vh !important;
+}
+
+/****************************************/
+/* Corrección específica para ruta.html */
+/****************************************/
+#map, .route-panel {
+  z-index: 1;
+}
